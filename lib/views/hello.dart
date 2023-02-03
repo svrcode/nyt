@@ -18,7 +18,7 @@ class HelloView extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 const Text(
-                  'New York Times: top news',
+                  'New York Times: actual news',
                   style: TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 15),
