@@ -22,6 +22,8 @@ class _NewsViewState extends State<NewsView> {
     var dio = Dio();
     final response = await dio.get(
         'https://api.nytimes.com/svc/topstories/v2/home.json?api-key=0SDaGP4DLAzR5OtGxVC6ObfhNljic18h');
+    // final data = response.data;
+
     final jsonBody = response.data['results'];
 
     setState(() {
@@ -37,7 +39,7 @@ class _NewsViewState extends State<NewsView> {
         actions: [
           ElevatedButton(
             onPressed: getNewsNYT,
-            child: const Text('NYT 1'),
+            child: const Text('NYT'),
           ),
         ],
       ),
@@ -47,30 +49,58 @@ class _NewsViewState extends State<NewsView> {
             child: Container(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                    Text(
-                      jsonNews[index]['title'],
-                      style: const TextStyle(fontSize: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Flexible(
+                                flex: 1,
+                                child: CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage('assets/images/logo_nyt.png'),
+                                  backgroundColor: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Flexible(
+                                flex: 3,
+                                child: Text(
+                                  jsonNews[index]['title'],
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 15),
+                          Text(
+                            jsonNews[index]['abstract'],
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              const Flexible(
+                                child: Text(
+                                  'Author: ',
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                              ),
+                              const SizedBox(width: 15),
+                              Flexible(
+                                child: Text(
+                                  jsonNews[index]['byline'],
+                                  style: const TextStyle(fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      jsonNews[index]['abstract'],
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                    const SizedBox(height: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('More: '),
-                        const SizedBox(height: 5),
-                        Text(
-                          jsonNews[index]['url'],
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ],
-                    )
                   ],
                 ),
               ),
