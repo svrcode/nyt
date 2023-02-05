@@ -18,11 +18,10 @@ class _NewsViewState extends State<NewsView> {
 
   var jsonNews;
 
-  getNewsNYT() async {
+  Future<void> getNewsNYT() async {
     var dio = Dio();
     final response = await dio.get(
         'https://api.nytimes.com/svc/topstories/v2/home.json?api-key=0SDaGP4DLAzR5OtGxVC6ObfhNljic18h');
-    // final data = response.data;
 
     final jsonBody = response.data['results'];
 
