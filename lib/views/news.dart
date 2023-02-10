@@ -10,11 +10,11 @@ class NewsView extends StatefulWidget {
 }
 
 class _NewsViewState extends State<NewsView> {
-  // @override
-  // void initState() {
-  //   getNewsNYT();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    getNewsNYT();
+    super.initState();
+  }
 
   var jsonNews;
 
@@ -47,7 +47,7 @@ class _NewsViewState extends State<NewsView> {
           return Card(
             child: Container(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   children: [
                     Expanded(
@@ -83,6 +83,7 @@ class _NewsViewState extends State<NewsView> {
                           Row(
                             children: [
                               const Flexible(
+                                flex: 1,
                                 child: Text(
                                   'Author: ',
                                   style: TextStyle(fontSize: 15),
@@ -90,6 +91,7 @@ class _NewsViewState extends State<NewsView> {
                               ),
                               const SizedBox(width: 15),
                               Flexible(
+                                flex: 3,
                                 child: Text(
                                   jsonNews[index]['byline'],
                                   style: const TextStyle(fontSize: 15),
